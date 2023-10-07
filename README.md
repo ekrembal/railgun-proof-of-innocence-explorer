@@ -15,7 +15,7 @@ On the server where you want to deploy the POI Node, install dependencies:
 2. yarn
 3. MongoDB
 
-Then run `./start-node`
+Then run `./start-list-provider`
 
 On the server where you want to deploy the POI Dashboard, install dependencies:
 

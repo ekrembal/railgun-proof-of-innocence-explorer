@@ -25,7 +25,7 @@ Make sure the box has Node.js >=16.20 installed, and yarn.
 2. `yarn setup-env`
 3. `npx pm2 start`
 
-OR, from the root of the monorepo, run `./start-node`.
+OR, from the root of the monorepo, run `./start-list-provider`.
 
 ## INSTALL MONGODB ON AMAZON LINUX
 

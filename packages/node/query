@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check if the correct number of arguments are provided
+if [[ $# -lt 3 ]]; then
+    echo "Usage: ./query <database> <collection> <field=value> ..."
+    exit 1
+fi
+
+DATABASE=$1
+COLLECTION=$2
+shift 2  # Shift the arguments to remove the first two, so only field=value pairs remain
+
+# Construct the query string
+QUERY="{ "
+for ARG in "$@"; do
+    KEY="${ARG%=*}"
+    VALUE="${ARG#*=}"
+    QUERY+="$KEY: '$VALUE', "
+done
+QUERY="${QUERY%,*} }"  # Remove the trailing comma and close the bracket
+
+# Attempt to use 'mongo' command first
+if command -v mongo &>/dev/null; then
+    echo "Executing query: db.${COLLECTION}.find(${QUERY}).pretty()"
+    mongo localhost:27017/${DATABASE} --eval "db.${COLLECTION}.find(${QUERY}).pretty()"
+elif command -v mongosh &>/dev/null; then
+    echo "Executing query: db.${COLLECTION}.find(${QUERY}).pretty()"
+    mongosh "mongodb://localhost:27017/${DATABASE}" --eval "db.${COLLECTION}.find(${QUERY}).pretty()"
+else
+    echo "Both 'mongo' and 'mongosh' commands not found. Please ensure MongoDB is installed and added to your PATH."
+    exit 1
+fi
