@@ -3,6 +3,7 @@ import { Drawer, SlideDirection } from '@components/Drawer/Drawer';
 import { Header } from '@components/Header/Header';
 import { AppRoutes } from '@constants/routes';
 import { CompareNodes } from '@screens/CompareNodes/CompareNodes';
+import { Explorer } from '@screens/Explorer/Explorer';
 import { NodeStatus } from '@screens/NodeStatus/NodeStatus';
 import styles from './AppNavigator.module.scss';
 
@@ -15,6 +16,7 @@ export const AppNavigator = () => {
         <Routes>
           <Route path={AppRoutes.NodeStatus} element={<NodeStatus />} />
           <Route path={AppRoutes.CompareNodes} element={<CompareNodes />} />
+          <Route path={AppRoutes.Explorer} element={<Explorer />} />
         </Routes>
       </BrowserRouter>
     </div>

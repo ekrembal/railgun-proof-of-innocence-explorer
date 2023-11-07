@@ -27,7 +27,8 @@ module.exports = {
       config.devtool = isDev ? 'source-map' : false;
       log(`devtool: ${config.devtool ?? 'none'}`);
       config.resolve.fallback = {
-        url: require.resolve('url'),
+        url: false,
+        zlib: require.resolve('browserify-zlib'),
         fs: false,
         path: require.resolve('path-browserify'),
         assert: require.resolve('assert'),

@@ -21,8 +21,8 @@ type NetworkOption = {
 const getNodeLabel = (nodeIp: AvailableNodes) => {
   if (nodeIp === AvailableNodes.Aggregator) return 'agg-node-mongo';
   if (nodeIp === AvailableNodes.AggregatorDocuDB) return 'agg-node-docuDB';
-  if (nodeIp === AvailableNodes.Blank) return 'blank-node';
-  if (nodeIp === AvailableNodes.OFAC) return 'ofac-node';
+  // if (nodeIp === AvailableNodes.Blank) return 'blank-node';
+  // if (nodeIp === AvailableNodes.OFAC) return 'ofac-node';
   else return 'unknown';
 };
 
