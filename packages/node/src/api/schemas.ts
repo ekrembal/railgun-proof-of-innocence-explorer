@@ -105,6 +105,7 @@ export const SubmitTransactProofBodySchema: AllowedSchema = {
         txidMerkleroot: { type: 'string' },
         txidMerklerootIndex: { type: 'number' },
         blindedCommitmentsOut: { type: 'array', items: { type: 'string' } },
+        railgunTxidIfHasUnshield: { type: 'string' },
       },
       required: [
         'snarkProof',
@@ -112,6 +113,7 @@ export const SubmitTransactProofBodySchema: AllowedSchema = {
         'txidMerkleroot',
         'txidMerklerootIndex',
         'blindedCommitmentsOut',
+        'railgunTxidIfHasUnshield',
       ],
     },
   },

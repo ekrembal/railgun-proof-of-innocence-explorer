@@ -8,6 +8,7 @@ import {
   NetworkName,
   NodeStatusAllNetworks,
   SingleCommitmentProofsData,
+  SubmitTransactProofParams,
   TXIDVersion,
   TransactProofData,
 } from '@railgun-community/shared-models';
@@ -222,34 +223,48 @@ describe('api', function () {
     ).to.eventually.be.rejectedWith('Request failed with status code 400');
   });
 
-  it.skip('Should return 200 for POST /submit-transact-proof', async () => {
-    // TODO: No POI node for blinded commitment (node hash) using fake data
+  it('Should return 200 for POST /submit-transact-proof', async () => {
     const chainType = '0';
     const chainID = '5';
 
-    const transactProofData: TransactProofData = {
-      // Make sure to have no empty strings in snarkProof
-      snarkProof: {
-        pi_a: ['some_string', 'some_string'],
-        pi_b: [
-          ['some_string', 'some_string'],
-          ['some_string', 'some_string'],
-        ],
-        pi_c: ['some_string', 'some_string'],
+    const body: SubmitTransactProofParams = {
+      txidVersion: TXIDVersion.V2_PoseidonMerkle,
+      listKey: 'test_list',
+      transactProofData: {
+        snarkProof: {
+          pi_a: ['some_string', 'some_string'],
+          pi_b: [
+            ['some_string', 'some_string'],
+            ['some_string', 'some_string'],
+          ],
+          pi_c: ['some_string', 'some_string'],
+        },
+        poiMerkleroots: ['', ''],
+        txidMerkleroot: '',
+        txidMerklerootIndex: 0,
+        blindedCommitmentsOut: ['', ''],
+        railgunTxidIfHasUnshield: '0x00',
       },
-      poiMerkleroots: ['', ''],
-      txidMerkleroot: '',
-      txidMerklerootIndex: 0,
-      blindedCommitmentsOut: ['', ''],
-      railgunTxidIfHasUnshield: '0x00',
     };
 
     const response = await AxiosTest.postRequest(
       `${apiUrl}/submit-transact-proof/${chainType}/${chainID}`,
-      { listKey, transactProofData },
+      body,
     );
 
     expect(response.status).to.equal(200);
+  });
+
+  it('Should return 400 for POST /submit-transact-proof with invalid body', async () => {
+    const chainType = '0';
+    const chainID = '5';
+
+    await expect(
+      AxiosTest.postRequest(
+        `${apiUrl}/submit-transact-proof/${chainType}/${chainID}`,
+        { listKey, transactProofData: 0 },
+      ),
+    ).to.eventually.be.rejectedWith('Request failed with status code 400');
   });
 
   it('Should return 200 for POST /submit-single-commitment-proofs', async () => {
@@ -310,18 +325,6 @@ describe('api', function () {
     );
 
     expect(response.status).to.equal(200);
-  });
-
-  it('Should return 400 for POST /submit-transact-proof with invalid body', async () => {
-    const chainType = '0';
-    const chainID = '5';
-
-    await expect(
-      AxiosTest.postRequest(
-        `${apiUrl}/submit-transact-proof/${chainType}/${chainID}`,
-        { listKey, transactProofData: 0 },
-      ),
-    ).to.eventually.be.rejectedWith('Request failed with status code 400');
   });
 
   it('Should return 200 for POST /pois-per-list', async () => {
