@@ -255,12 +255,50 @@ export class API {
 
           dbg(err);
 
+          let statusCode = 500;
+          let errorMessage = 'Internal server error';
+
+          if (err.message === 'Invalid listKey') {
+            statusCode = 400;
+            errorMessage = err.message;
+          } else if (err.message === 'Cannot connect to listKey') {
+            statusCode = 404;
+            errorMessage = err.message;
+          } else if (err.message === 'Invalid query range') {
+            statusCode = 400;
+            errorMessage = err.message;
+          } else if (
+            err.message ===
+            `Max event query range length is ${QueryLimits.MAX_EVENT_QUERY_RANGE_LENGTH}`
+          ) {
+            statusCode = 400;
+            errorMessage = err.message;
+          } else if (
+            err.message ===
+            `Max event query range length is ${QueryLimits.MAX_POI_MERKLETREE_LEAVES_QUERY_RANGE_LENGTH}`
+          ) {
+            statusCode = 400;
+            errorMessage = err.message;
+          } else if (
+            err.message ===
+            `Too many blinded commitments: max ${QueryLimits.GET_POI_EXISTENCE_MAX_BLINDED_COMMITMENTS}`
+          ) {
+            statusCode = 400;
+            errorMessage = err.message;
+          } else if (
+            err.message ===
+            `Too many blinded commitments: max ${QueryLimits.GET_MERKLE_PROOFS_MAX_BLINDED_COMMITMENTS}`
+          ) {
+            statusCode = 400;
+            errorMessage = err.message;
+          }
+
           if (isListProvider()) {
             // Show the error message to aggregator nodes
-            return res.status(500).json(err.message);
+            return res.status(statusCode).json(errorMessage);
           } else {
             // Hide the error message
-            return res.status(500).send();
+            return res.status(statusCode).send();
           }
           // return next(err);
         }
@@ -469,7 +507,7 @@ export class API {
         const { txidVersion, listKey, signedPOIEvent, validatedMerkleroot } =
           req.body as SubmitPOIEventParams;
         if (!this.hasListKey(listKey)) {
-          return;
+          throw new Error('Invalid listKey');
         }
         const networkName = networkNameForSerializedChain(chainType, chainID);
 
@@ -496,7 +534,7 @@ export class API {
         const { txidVersion, txidIndex, merkleroot, signature, listKey } =
           req.body as SubmitValidatedTxidAndMerklerootParams;
         if (!this.hasListKey(listKey)) {
-          return;
+          throw new Error('Invalid listKey');
         }
         const networkName = networkNameForSerializedChain(chainType, chainID);
 
@@ -528,7 +566,7 @@ export class API {
           signature,
         } = req.body as RemoveTransactProofParams;
         if (!this.hasListKey(listKey)) {
-          return;
+          throw new Error('Invalid listKey');
         }
 
         const networkName = networkNameForSerializedChain(chainType, chainID);
@@ -561,7 +599,7 @@ export class API {
         const { txidVersion, listKey, transactProofData } =
           req.body as SubmitTransactProofParams;
         if (!this.hasListKey(listKey)) {
-          return;
+          throw new Error('Invalid listKey');
         }
 
         const networkName = networkNameForSerializedChain(chainType, chainID);
