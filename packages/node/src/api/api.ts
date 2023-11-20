@@ -483,7 +483,7 @@ export class API {
         const { txidVersion, bloomFilterSerialized, listKey } =
           req.body as GetBlockedShieldsParams;
         if (!this.hasListKey(listKey)) {
-          return [];
+          throw new Error('Invalid listKey');
         }
 
         const networkName = networkNameForSerializedChain(chainType, chainID);
@@ -747,7 +747,7 @@ export class API {
         const { txidVersion, listKey, blindedCommitments } =
           req.body as GetMerkleProofsParams;
         if (!this.hasListKey(listKey)) {
-          return [];
+          throw new Error('Invalid listKey');
         }
         const networkName = networkNameForSerializedChain(chainType, chainID);
         if (
