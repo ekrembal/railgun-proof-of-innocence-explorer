@@ -134,7 +134,7 @@ export class API {
 
   serve(host: string, port: string) {
     if (this.server) {
-      throw new Error('API already running.');
+      throw new Error('API is already running.');
     }
     this.server = this.app.listen(Number(port), host, () => {
       dbg(`Listening at http://${host}:${port}`);
@@ -369,7 +369,8 @@ export class API {
         const { txidVersion, listKey, startIndex, endIndex } =
           req.body as GetPOIListEventRangeParams;
         if (!this.hasListKey(listKey)) {
-          return [];
+          throw new Error('Invalid listKey');
+          // return [];
         }
         const networkName = networkNameForSerializedChain(chainType, chainID);
 
@@ -403,7 +404,8 @@ export class API {
         const { txidVersion, listKey, startIndex, endIndex } =
           req.body as GetPOIMerkletreeLeavesParams;
         if (!this.hasListKey(listKey)) {
-          return [];
+          throw new Error('Invalid listKey');
+          // return [];
         }
         const networkName = networkNameForSerializedChain(chainType, chainID);
 
@@ -439,7 +441,8 @@ export class API {
         const { txidVersion, bloomFilterSerialized, listKey } =
           req.body as GetTransactProofsParams;
         if (!this.hasListKey(listKey)) {
-          return [];
+          throw new Error('Invalid listKey');
+          // return [];
         }
 
         const networkName = networkNameForSerializedChain(chainType, chainID);
