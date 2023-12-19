@@ -1869,6 +1869,23 @@
     "@whatwg-node/router" "0.3.0"
     graphql-yoga "3.9.0"
 
+"@graphql-mesh/merger-bare@^0.96.0":
+  version "0.96.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-bare/-/merger-bare-0.96.2.tgz#1c36d80d82c99ce0d563101d8fbc0f45fd5dd030"
+  integrity sha512-2sOt1dyNPUrJoXD203n5gBSGXR+9plj0Ybgjv1VjXbZKVRL0Bao6COqf+ZYS2e3FJgI/9CUR85tGhoGyEc4EGA==
+  dependencies:
+    "@graphql-mesh/merger-stitching" "0.96.2"
+    "@graphql-tools/schema" "10.0.2"
+
+"@graphql-mesh/merger-stitching@0.96.2":
+  version "0.96.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.96.2.tgz#22b4f77cff9b826062a68808ae96992408031e81"
+  integrity sha512-pljjW7+wx/t5N4f3NRgk7+FPt3KCsR+Hhuquigwefn9y9vLn4k7LI03lzhD0ZVZNSrNk0bymw34uzU2jR/vV5w==
+  dependencies:
+    "@graphql-tools/delegate" "^10.0.0"
+    "@graphql-tools/schema" "^10.0.0"
+    "@graphql-tools/stitch" "^9.0.0"
+
 "@graphql-mesh/merger-stitching@^0.18.24":
   version "0.18.25"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.18.25.tgz#5aeae5204eabd99233d9da56f128a20bbc153c23"
@@ -1952,6 +1969,17 @@
     tslib "^2.4.0"
     value-or-promise "^1.0.12"
 
+"@graphql-tools/batch-delegate@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/batch-delegate/-/batch-delegate-9.0.0.tgz#dd9e87466f450bae61a20525a2a8d8b0d257df37"
+  integrity sha512-23NmxcHQeKcfhMQyrRPTZfW4/+bSpAyR/qAhRjx+/hikDIa1Uv2XVgV9jIitSgM0OEk/KGPB4VQv+LCOWvAYiw==
+  dependencies:
+    "@graphql-tools/delegate" "^10.0.0"
+    "@graphql-tools/utils" "^10.0.0"
+    dataloader "2.2.2"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.12"
+
 "@graphql-tools/batch-execute@8.5.19":
   version "8.5.19"
   resolved "https://registry.yarnpkg.com/@graphql-tools/batch-execute/-/batch-execute-8.5.19.tgz#b204cc5bded1b1d12088b399d3b72eaf38d63132"
@@ -1972,6 +2000,16 @@
     tslib "^2.4.0"
     value-or-promise "^1.0.12"
 
+"@graphql-tools/batch-execute@^9.0.1":
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/batch-execute/-/batch-execute-9.0.2.tgz#5ac3257501e7941fad40661bb5e1110d6312f58b"
+  integrity sha512-Y2uwdZI6ZnatopD/SYfZ1eGuQFI7OU2KGZ2/B/7G9ISmgMl5K+ZZWz/PfIEXeiHirIDhyk54s4uka5rj2xwKqQ==
+  dependencies:
+    "@graphql-tools/utils" "^10.0.5"
+    dataloader "^2.2.2"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.12"
+
 "@graphql-tools/delegate@9.0.31":
   version "9.0.31"
   resolved "https://registry.yarnpkg.com/@graphql-tools/delegate/-/delegate-9.0.31.tgz#e147f25c3deaf9ce161867986da129f48ecc7190"
@@ -1984,6 +2022,18 @@
     dataloader "^2.2.2"
     tslib "^2.5.0"
     value-or-promise "^1.0.12"
+
+"@graphql-tools/delegate@^10.0.0", "@graphql-tools/delegate@^10.0.1", "@graphql-tools/delegate@^10.0.3":
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/delegate/-/delegate-10.0.3.tgz#2d0e133da94ca92c24e0c7360414e5592321cf2d"
+  integrity sha512-Jor9oazZ07zuWkykD3OOhT/2XD74Zm6Ar0ENZMk75MDD51wB2UWUIMljtHxbJhV5A6UBC2v8x6iY0xdCGiIlyw==
+  dependencies:
+    "@graphql-tools/batch-execute" "^9.0.1"
+    "@graphql-tools/executor" "^1.0.0"
+    "@graphql-tools/schema" "^10.0.0"
+    "@graphql-tools/utils" "^10.0.5"
+    dataloader "^2.2.2"
+    tslib "^2.5.0"
 
 "@graphql-tools/delegate@^9.0.31", "@graphql-tools/delegate@^9.0.35":
   version "9.0.35"
@@ -2069,6 +2119,17 @@
     tslib "^2.4.0"
     value-or-promise "^1.0.12"
 
+"@graphql-tools/executor@^1.0.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/executor/-/executor-1.2.0.tgz#6c45f4add765769d9820c4c4405b76957ba39c79"
+  integrity sha512-SKlIcMA71Dha5JnEWlw4XxcaJ+YupuXg0QCZgl2TOLFz4SkGCwU/geAsJvUJFwK2RbVLpQv/UMq67lOaBuwDtg==
+  dependencies:
+    "@graphql-tools/utils" "^10.0.0"
+    "@graphql-typed-document-node/core" "3.2.0"
+    "@repeaterjs/repeater" "^3.0.4"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.12"
+
 "@graphql-tools/merge@^8.4.1":
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-8.4.2.tgz#95778bbe26b635e8d2f60ce9856b388f11fe8288"
@@ -2076,6 +2137,24 @@
   dependencies:
     "@graphql-tools/utils" "^9.2.1"
     tslib "^2.4.0"
+
+"@graphql-tools/merge@^9.0.0", "@graphql-tools/merge@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/merge/-/merge-9.0.1.tgz#693f15da152339284469b1ce5c6827e3ae350a29"
+  integrity sha512-hIEExWO9fjA6vzsVjJ3s0cCQ+Q/BEeMVJZtMXd7nbaVefVy0YDyYlEkeoYYNV3NVVvu1G9lr6DM1Qd0DGo9Caw==
+  dependencies:
+    "@graphql-tools/utils" "^10.0.10"
+    tslib "^2.4.0"
+
+"@graphql-tools/schema@10.0.2", "@graphql-tools/schema@^10.0.0":
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/schema/-/schema-10.0.2.tgz#21bc2ee25a65fb4890d2e5f9f22ef1f733aa81da"
+  integrity sha512-TbPsIZnWyDCLhgPGnDjt4hosiNU2mF/rNtSk5BVaXWnZqvKJ6gzJV4fcHcvhRIwtscDMW2/YTnK6dLVnk8pc4w==
+  dependencies:
+    "@graphql-tools/merge" "^9.0.1"
+    "@graphql-tools/utils" "^10.0.10"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.12"
 
 "@graphql-tools/schema@9.0.18":
   version "9.0.18"
@@ -2108,6 +2187,21 @@
     "@graphql-tools/schema" "^9.0.18"
     "@graphql-tools/utils" "^9.2.1"
     "@graphql-tools/wrap" "^9.4.2"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.11"
+
+"@graphql-tools/stitch@^9.0.0":
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/stitch/-/stitch-9.0.3.tgz#6164333ecf3317d9a5e1a7e5567ae37ca936a8ac"
+  integrity sha512-G03XahiHDu1pnaS8z2GNfsV/5BribMEUATT5dCHBAqj13Te5y1amZNQePrmw8DLtbf5qDbU6CO7kGHPxv0XO9A==
+  dependencies:
+    "@graphql-tools/batch-delegate" "^9.0.0"
+    "@graphql-tools/delegate" "^10.0.1"
+    "@graphql-tools/executor" "^1.0.0"
+    "@graphql-tools/merge" "^9.0.0"
+    "@graphql-tools/schema" "^10.0.0"
+    "@graphql-tools/utils" "^10.0.0"
+    "@graphql-tools/wrap" "^10.0.0"
     tslib "^2.4.0"
     value-or-promise "^1.0.11"
 
@@ -2147,6 +2241,16 @@
     "@graphql-typed-document-node/core" "^3.1.1"
     tslib "^2.4.0"
 
+"@graphql-tools/utils@^10.0.0", "@graphql-tools/utils@^10.0.10", "@graphql-tools/utils@^10.0.5":
+  version "10.0.11"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-10.0.11.tgz#1238fbe37e8d6c662c48ab2477c98269d6fd851a"
+  integrity sha512-vVjXgKn6zjXIlYBd7yJxCVMYGb5j18gE3hx3Qw3mNsSEsYQXbJbPdlwb7Fc9FogsJei5AaqiQerqH4kAosp1nQ==
+  dependencies:
+    "@graphql-typed-document-node/core" "^3.1.1"
+    cross-inspect "1.0.0"
+    dset "^3.1.2"
+    tslib "^2.4.0"
+
 "@graphql-tools/utils@^8.8.0":
   version "8.13.1"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.13.1.tgz#b247607e400365c2cd87ff54654d4ad25a7ac491"
@@ -2162,6 +2266,17 @@
     "@graphql-tools/delegate" "^9.0.31"
     "@graphql-tools/schema" "^9.0.18"
     "@graphql-tools/utils" "^9.2.1"
+    tslib "^2.4.0"
+    value-or-promise "^1.0.12"
+
+"@graphql-tools/wrap@^10.0.0":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/wrap/-/wrap-10.0.1.tgz#9e3d27d2723962c26c4377d5d7ab0d3038bf728c"
+  integrity sha512-Cw6hVrKGM2OKBXeuAGltgy4tzuqQE0Nt7t/uAqnuokSXZhMHXJUb124Bnvxc2gPZn5chfJSDafDe4Cp8ZAVJgg==
+  dependencies:
+    "@graphql-tools/delegate" "^10.0.3"
+    "@graphql-tools/schema" "^10.0.0"
+    "@graphql-tools/utils" "^10.0.0"
     tslib "^2.4.0"
     value-or-promise "^1.0.12"
 
@@ -2610,10 +2725,10 @@
   resolved "https://registry.yarnpkg.com/@railgun-community/curve25519-scalarmult-wasm/-/curve25519-scalarmult-wasm-0.1.5.tgz#edb5e40a8f1fdb7f7e0de1d04e8badabe41cb2a8"
   integrity sha512-Cur8uM/IdNW3WzUwdPloDG1CF0rpSBDWq2yGXJMZ7IMeBGdc4Jj0h9tnNMFRZ35ZuCVVbZ3yClmqSa4PsbpdGQ==
 
-"@railgun-community/engine@6.0.8":
-  version "6.0.8"
-  resolved "https://registry.yarnpkg.com/@railgun-community/engine/-/engine-6.0.8.tgz#e14b0073b3b86ff932c8f607da130e1ee0dbd098"
-  integrity sha512-6GD1ltrR+gIoFYKgbXIugmrn68CytElnFBmJHXyA7oiVmdK8LZHdDoUKNyiBUS3Ml2PdqO63/8zHrWX/xdVAHA==
+"@railgun-community/engine@6.2.14":
+  version "6.2.14"
+  resolved "https://registry.yarnpkg.com/@railgun-community/engine/-/engine-6.2.14.tgz#080a20416b945fe7c697143ae2775fbf6ee95f40"
+  integrity sha512-tl0j8RHm5UqlXc7cOcVcq1rjvL1Eu7DCJwuudgTyNTeY2QUQ93Iq+hCl0FeSaclqSU6CIyjhqu8vWsQ+fM7H8Q==
   dependencies:
     "@noble/ciphers" "^0.4.0"
     "@noble/ed25519" "^1.7.1"
@@ -2628,7 +2743,7 @@
     circomlibjs hsg88/circomlibjs#ffjavascrip.0.1.0
     encoding-down "^7.1.0"
     ethereum-cryptography "^2.0.0"
-    ethers "github:Railgun-Community/ethers.js#v6.7.8"
+    ethers "github:Railgun-Community/ethers.js#v6.7.10"
     fast-text-encoding "^1.0.6"
     levelup "^5.1.1"
     msgpack-lite "^0.1.26"
@@ -2638,28 +2753,29 @@
   resolved "https://registry.yarnpkg.com/@railgun-community/shared-models/-/shared-models-5.7.15.tgz#23a1d8843df44c7f9e028b838b41ecf431d05473"
   integrity sha512-p0EJAOmAe3ldxw/7WJF5/X+vZNDElGTGRhNv3U0gJ4V4IgMnV0kT/j8eaDL3ET7mRdPlL73wxcX/liCy3Ckd3Q==
 
-"@railgun-community/shared-models@6.0.10":
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/@railgun-community/shared-models/-/shared-models-6.0.10.tgz#670724cc9669d4a1309893e13d5b22ddc89e8a91"
-  integrity sha512-zyFewnMjMylFykfoKr/QT4UQSIBEnWb+6plvwMLjIVFkRTFlS7zMoeRh34puGYp0Is6JuhkQqyItuFOYaGSHvg==
+"@railgun-community/shared-models@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@railgun-community/shared-models/-/shared-models-6.3.0.tgz#c3d87091b9afc880f369b30f63c7df6f0f47829b"
+  integrity sha512-ZesDE7DnLUmjn+2M6UisXPUumImmqWHi854+7q3EkYV5R/Gjsth4yeca1OBNSjCmANpg7nZvDjctkodWFi0xBw==
 
-"@railgun-community/wallet@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@railgun-community/wallet/-/wallet-6.0.4.tgz#fb8ea13934f4b994f25451c4042d66767050e8cc"
-  integrity sha512-MxCXPVHdqGxKbRNmT9JcrNIDCQUGzhKQIXgoRo0TVsHvDvUIWthhFNwj1FgZxLJzCJokOeuEm6y+YdR/7x3BFg==
+"@railgun-community/wallet@^6.4.1":
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/@railgun-community/wallet/-/wallet-6.4.1.tgz#d05ad36970fa54f15f69b8ecc49ed386e5477c0d"
+  integrity sha512-15GXbpfh58Z3gR0TlBPKgRLeKM4knBmG12CvN/yA8G8lSN0SjbLGYTB1Pz7R6R8+LhSARgG9B/gP4bwxV34eEQ==
   dependencies:
     "@graphql-mesh/cache-localforage" "^0.7.20"
     "@graphql-mesh/cross-helpers" "^0.3.4"
     "@graphql-mesh/graphql" "^0.34.16"
     "@graphql-mesh/http" "^0.3.28"
+    "@graphql-mesh/merger-bare" "^0.96.0"
     "@graphql-mesh/merger-stitching" "^0.18.24"
     "@graphql-mesh/runtime" "^0.46.23"
     "@graphql-mesh/store" "^0.9.20"
     "@graphql-mesh/types" "^0.91.14"
     "@graphql-mesh/utils" "^0.43.22"
     "@noble/ed25519" "^1.7.1"
-    "@railgun-community/engine" "6.0.8"
-    "@railgun-community/shared-models" "6.0.10"
+    "@railgun-community/engine" "6.2.14"
+    "@railgun-community/shared-models" "6.3.0"
     "@whatwg-node/fetch" "^0.8.4"
     assert "2.0.0"
     axios "0.27.2"
@@ -2667,7 +2783,7 @@
     buffer "^6.0.3"
     crypto-browserify "3.12.0"
     ethereum-cryptography "^2.0.0"
-    ethers "github:Railgun-Community/ethers.js#v6.7.8"
+    ethers "github:Railgun-Community/ethers.js#v6.7.10"
     events "3.3.0"
     graphql "^16.6.0"
     stream-browserify "3.0.0"
@@ -5355,6 +5471,13 @@ cross-fetch@^4.0.0:
   dependencies:
     node-fetch "^2.6.12"
 
+cross-inspect@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cross-inspect/-/cross-inspect-1.0.0.tgz#5fda1af759a148594d2d58394a9e21364f6849af"
+  integrity sha512-4PFfn4b5ZN6FMNGSZlyb7wUhuN8wvj8t/VQHZdM4JsDcruGJ8L2kf9zao98QIrBPFCpdk27qst/AGTl7pL3ypQ==
+  dependencies:
+    tslib "^2.4.0"
+
 cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -6902,9 +7025,9 @@ ethereumjs-util@^7.1.5:
     ethereum-cryptography "^0.1.3"
     rlp "^2.2.4"
 
-"ethers@github:Railgun-Community/ethers.js#v6.7.6":
-  version "6.7.6"
-  resolved "https://codeload.github.com/Railgun-Community/ethers.js/tar.gz/8eee17db07ce57bcc453855d6aa9b945eb47dfa4"
+"ethers@github:Railgun-Community/ethers.js#v6.7.10":
+  version "6.7.10"
+  resolved "https://codeload.github.com/Railgun-Community/ethers.js/tar.gz/fbaa9a55d88898585917767aea8df794fde3569b"
   dependencies:
     "@adraffy/ens-normalize" "1.9.2"
     "@noble/hashes" "1.1.2"
@@ -6914,9 +7037,9 @@ ethereumjs-util@^7.1.5:
     tslib "2.4.0"
     ws "8.5.0"
 
-"ethers@github:Railgun-Community/ethers.js#v6.7.8":
-  version "6.7.8"
-  resolved "https://codeload.github.com/Railgun-Community/ethers.js/tar.gz/6a7c69d92d91bc34f42de79ad429e7a22352cf1a"
+"ethers@github:Railgun-Community/ethers.js#v6.7.6":
+  version "6.7.6"
+  resolved "https://codeload.github.com/Railgun-Community/ethers.js/tar.gz/8eee17db07ce57bcc453855d6aa9b945eb47dfa4"
   dependencies:
     "@adraffy/ens-normalize" "1.9.2"
     "@noble/hashes" "1.1.2"

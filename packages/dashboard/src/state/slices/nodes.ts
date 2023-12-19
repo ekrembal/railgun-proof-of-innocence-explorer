@@ -1,12 +1,12 @@
 import {
-  BlindedCommitmentType,
   BlindedCommitmentData,
+  BlindedCommitmentType,
   isDefined,
   NetworkName,
   NodeStatusAllNetworks,
   NodeStatusForNetwork,
-  TXIDVersion,
   POIsPerListMap,
+  TXIDVersion,
 } from '@railgun-community/shared-models';
 import { StateCreator } from 'zustand';
 import { AvailableNodes, availableNodesArray } from '@constants/nodes';
@@ -20,13 +20,21 @@ export type NodesSlice = {
   setCurrentNetwork: (network: NetworkName) => void;
   getNodeStatusForAllNetworks: () => void;
   getAllNodesData: () => void;
-  getPOIsPerList: (listKeys: string[], railgunTxids: string[]) => void;
+  getPOIsPerList: (
+    listKeys: string[],
+    queryTxs: { txid: string; railgunTxids: string[] }[],
+  ) => void;
   refreshNode: () => void;
   loadingNodeStatusForAllNetworks: boolean;
   refreshingNode: boolean;
   lastRefreshedNodeStatusForAllNetworks: Date | null;
   currentNetwork: NetworkName;
-  poisPerList: POIsPerListMap | null;
+  poisPerList:
+    | {
+        txid: string;
+        poisPerList: POIsPerListMap;
+      }[]
+    | null;
 };
 
 // TODO: Add better naming to all variables and functions.
@@ -62,23 +70,41 @@ export const createNodesSlice: StateCreator<NodesSlice, [], [], NodesSlice> = (
       return { allNodesData };
     });
   },
-  getPOIsPerList: async (listKeys: string[], railgunTxids: string[]) => {
+  getPOIsPerList: async (
+    listKeys: string[],
+    queryTxs: { txid: string; railgunTxids: string[] }[],
+  ) => {
     set(() => ({ loadingNodeStatusForAllNetworks: true }));
     const nodeIp = get().nodeIp;
     const currentNetwork = get().currentNetwork;
 
     if (isDefined(nodeIp)) {
       const currentTime = new Date();
-      const data = await POINodeRequest.getPOIsPerList(
-        nodeIp,
-        currentNetwork,
-        TXIDVersion.V2_PoseidonMerkle,
-        listKeys,
-        railgunTxids.map(blindedCommitment => ({
-          blindedCommitment,
-          type: BlindedCommitmentType.Unshield,
-        })),
+      const data = await Promise.all(
+        queryTxs.map(async queryTx => {
+          const poisPerList = await POINodeRequest.getPOIsPerList(
+            nodeIp,
+            currentNetwork,
+            TXIDVersion.V2_PoseidonMerkle,
+            listKeys,
+            queryTx.railgunTxids.map(blindedCommitment => ({
+              blindedCommitment: "0x" + blindedCommitment,
+              type: BlindedCommitmentType.Unshield,
+            })),
+          );
+          return { txid: queryTx.txid, poisPerList };
+        }),
       );
+      // const data = await POINodeRequest.getPOIsPerList(
+      //   nodeIp,
+      //   currentNetwork,
+      //   TXIDVersion.V2_PoseidonMerkle,
+      //   listKeys,
+      //   railgunTxids.map(blindedCommitment => ({
+      //     blindedCommitment,
+      //     type: BlindedCommitmentType.Unshield,
+      //   })),
+      // );
       set(() => {
         return {
           loadingNodeStatusForAllNetworks: false,
