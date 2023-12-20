@@ -1,5 +1,6 @@
 import { POIsPerListMap } from '@railgun-community/shared-models';
-import React from 'react';
+import styles from './POIStatusDisplay.module.scss';
+
 
 export const POIStatusDisplay = ({
   poisPerListMap,
@@ -10,7 +11,7 @@ export const POIStatusDisplay = ({
   }[];
 }) => {
   return (
-    <div>
+    <div className={styles.poiStatusDisplay}>
       {poisPerListMap.map(({ txid, poisPerList }) => (
         <div key={txid}>
           <h3>Transaction ID: {txid}</h3>

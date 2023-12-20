@@ -13,12 +13,12 @@ import { FullScreenSpinner } from '@components/FullScreenSpinner/FullScreenSpinn
 import { POIStatusDisplay } from '@components/POIStatusDisplay/POIStatusDisplay';
 import { List } from '@screens/NodeStatus/components/List/List';
 import { useNodeStore } from '@state/stores';
-import styles from '../NodeStatus/NodeStatus.module.scss';
+import styles from './Explorer.module.scss';
 
 export const Explorer = () => {
   // useState()
   const [queryInput, setQueryInput] = useState(
-    '0xe523c6f891ff980f766005b9afcc16adc7607201db6ce8621ed753bed2eb16ea',
+    '',
   );
   const {
     getNodeStatusForAllNetworks,
@@ -81,11 +81,12 @@ export const Explorer = () => {
   }
 
   return (
-    <div className={styles.nodeStatusContainer}>
+    <div className={`${styles.explorerContainer} ${poisPerList ? styles.explorerContainerWithData : ''}`}>
       <input
         type="text"
         value={queryInput}
         onChange={e => setQueryInput(e.target.value)}
+        placeholder='Enter a txid or address'
       />
       <button onClick={() => handleQuery(queryInput)}>Search</button>
       {poisPerList && <POIStatusDisplay poisPerListMap={poisPerList} />}
