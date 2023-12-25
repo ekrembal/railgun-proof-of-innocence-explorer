@@ -6,3 +6,6 @@ pnpm-lock.yaml
 
 # Mac browser
 .DS_Store
+
+# Local Netlify folder
+.netlify

@@ -25,6 +25,7 @@ export type NodesSlice = {
     queryTxs: { txid: string; railgunTxids: string[] }[],
   ) => void;
   refreshNode: () => void;
+  setLoadingNodeStatusForAllNetworks: (loading: boolean) => void;
   loadingNodeStatusForAllNetworks: boolean;
   refreshingNode: boolean;
   lastRefreshedNodeStatusForAllNetworks: Date | null;
@@ -70,6 +71,9 @@ export const createNodesSlice: StateCreator<NodesSlice, [], [], NodesSlice> = (
       return { allNodesData };
     });
   },
+  setLoadingNodeStatusForAllNetworks: (loading: boolean) => {
+    set(() => ({ loadingNodeStatusForAllNetworks: loading }));
+  },
   getPOIsPerList: async (
     listKeys: string[],
     queryTxs: { txid: string; railgunTxids: string[] }[],
@@ -95,16 +99,6 @@ export const createNodesSlice: StateCreator<NodesSlice, [], [], NodesSlice> = (
           return { txid: queryTx.txid, poisPerList };
         }),
       );
-      // const data = await POINodeRequest.getPOIsPerList(
-      //   nodeIp,
-      //   currentNetwork,
-      //   TXIDVersion.V2_PoseidonMerkle,
-      //   listKeys,
-      //   railgunTxids.map(blindedCommitment => ({
-      //     blindedCommitment,
-      //     type: BlindedCommitmentType.Unshield,
-      //   })),
-      // );
       set(() => {
         return {
           loadingNodeStatusForAllNetworks: false,
