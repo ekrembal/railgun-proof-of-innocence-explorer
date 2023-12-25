@@ -15,7 +15,7 @@ import { useNodeStore } from '@state/stores';
 import styles from './Explorer.module.scss';
 
 const LIST_NAMES = {
-  'efc6ddb59c098a13fb2b618fdae94c1c3a807abc8fb1837c93620c9143ee9e88': "OFAC"
+  'efc6ddb59c098a13fb2b618fdae94c1c3a807abc8fb1837c93620c9143ee9e88': "SDN+BlockedPersons"
 }
 
 export const Explorer = () => {
@@ -103,7 +103,7 @@ export const Explorer = () => {
         placeholder="Search by Address or Txn Hash"
       />
       <button onClick={() => handleQuery(queryInput)}>Search</button>
-      {poisPerList && <POIStatusDisplay poisPerListMap={poisPerList} listNames={LIST_NAMES} />}
+      {error === null && poisPerList && <POIStatusDisplay poisPerListMap={poisPerList} listNames={LIST_NAMES} />}
       {error !== null && <ErrorDisplay message={error} />}
     </div>
   );

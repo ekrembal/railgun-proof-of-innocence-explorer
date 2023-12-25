@@ -21,9 +21,11 @@ export const POIStatusDisplay = ({
               <h4>Blinded Commitment: {blindedCommitment}</h4>
               <ul>
                 {Object.entries(poiList).map(([listKey, poiStatus]) => (
-                  listNames[listKey] &&
+                  
                   <li key={listKey}>
-                    List: {listNames[listKey]}, Status: {poiStatus}
+                    List Key: {listKey} <br />
+                    List Name:  {listNames[listKey] ? listNames[listKey]: "unknown"} <br />
+                    Status: {poiStatus}
                   </li>
                 ))}
               </ul>
